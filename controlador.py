@@ -2,15 +2,19 @@ from datos import cliente,contactos
 from validaciones import es_numero,formatear_monto
 
 def registrar_cliente():
-    while True:
-        cliente["nombre"] = input("Ingrese su Nombre: ")
-        if cliente["nombre"].isalpha():
-            break
-        print("Nombre inválido. Solo letras.")
+while True:
+    cliente["nombre"] = input("Ingrese su Nombre: ").strip()  # .strip() elimina espacios al inicio/final
+    
+    if len(cliente["nombre"]) < 2:
+        print("Error: El nombre debe tener al menos 2 caracteres.")
+    elif not cliente["nombre"].isalpha():
+        print("Error: Solo se permiten letras (sin números, espacios ni símbolos).")
+    else:
+        break 
 
     while True:
         cliente["apellido"] = input("Ingrese su Apellido: ")
-        if cliente["apellido"].isalpha():
+        if cliente["apellido"].isalpha() and len(cliente["nombre"]) >= 2:
             break
         print("Apellido inválido. Solo letras.")
 
